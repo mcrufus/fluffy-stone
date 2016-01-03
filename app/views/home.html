@@ -1,0 +1,74 @@
+
+    <div class="container" ng-controller="IndexController">
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Our Lipsmacking Culinary Creations</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+				<!-- Implement the Featured Dish Here -->
+                
+                <div class="media">
+                <div class="media-left media-middle">
+                  <a href="#">
+                    <img class="media-object img-thumbnail"
+                         src={{hdish.image}} alt="Uthappizza">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h2 class="media-heading">{{hdish.name}}</h2>
+                    <p>{{hdish.description}}</p>
+
+                </div>
+              </div>
+                
+            </div>
+        </div>
+
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+                <h3 align=center>This Month's Promotions</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <!-- Implement promo here -->
+                <div class="media">
+                <div class="media-body">
+                  <h2 class="media-heading">{{hpromo.name}}</h2>
+                    <p>{{hpromo.description}}</p>
+
+                </div>
+                <div class="media-right media-middle">
+                  <a href="#">
+                    <img class="media-object img-thumbnail"
+                         src={{hpromo.image}} alt="Uthappizza">
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Meet our Culinary Specialists</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+				<!-- Implement the Executive Chef Info Here -->
+                 <div class="media">
+                <div class="media-left media-middle">
+                  <a href="#">
+                    <img class="media-object img-thumbnail"
+                         src={{hleader.image}} alt={{hleader.name}}>
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h2 class="media-heading">{{hleader.name}}</h2>
+                    <p>{{hleader.description}}</p>
+
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
