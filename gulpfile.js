@@ -24,7 +24,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('usemin', ['jshint'], function() {
-  return gulp.src('./app/menu.html')
+  return gulp.src('./app/**/*.html')
     .pipe(usemin({
       css: [minifycss(), rev()],
       js: [ngannotate(), uglify(), rev()]
@@ -76,7 +76,7 @@ gulp.task('browser-sync', ['default'], function() {
 
 //Clean
 gulp.task('clean', function() {
-  return del(['dist']);
+  return del(['dist','../../json-server/public']);
 });
 
 gulp.task('copyfonts', ['clean'], function() {
