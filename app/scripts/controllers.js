@@ -79,7 +79,8 @@ angular.module('confusionApp')
             };
         }])
 
-        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory',
+          function($scope, $stateParams, menuFactory) {
 
             $scope.dish = {};
             $scope.showDish = false;
@@ -124,10 +125,16 @@ angular.module('confusionApp')
         }])
 
         // implement the IndexController and About Controller here
-        .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
+        .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory',
+          function($scope, menuFactory, corporateFactory) {
 
                 $scope.dish = {};
+                $scope.promo = {};
+                $scope.leader = {};
+
                 $scope.showDish = false;
+                $scope.showPromo = false;
+                $scope.showLeader = false;
                 $scope.message = "Loading ...";
 
                 $scope.dish = menuFactory.getDishes().get({id:0})
@@ -142,15 +149,48 @@ angular.module('confusionApp')
                   }
                 );
 
-                $scope.hleader = corporateFactory.getLeader(0);
-                $scope.hpromo = menuFactory.getPromotion(0);
+                $scope.promo = menuFactory.getPromotion().get({id:0})
+                .$promise.then(
+                  function(response) {
+                    $scope.promo = response;
+                    $scope.showPromo = true;
+                  },
+                  function(response) {
+                    $scope.message = "Error: " + response.status +
+                                      " " + response.statusText;
+                  }
+                );
+
+                $scope.leader = corporateFactory.getLeaders().get({id:0})
+                .$promise.then(
+                  function(response) {
+                    $scope.leader = response;
+                    $scope.showLeader = true;
+                  },
+                  function(response) {
+                    $scope.message = "Error: " + response.status +
+                                      " " + response.statusText;
+                  }
+                );
+                //$scope.promo = menuFactory.getPromotion(0);
 
         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
-            var leaders = corporateFactory.getLeaders();
-            $scope.leaders = leaders;
+          $scope.showLeaders = false;
+          $scope.message = "Loading ...";
 
+          $scope.leaders = corporateFactory.getLeaders().query(
+            function(response) {
+              $scope.leaders = response;
+              $scope.showLeaders = true;
+            },
+            function(response) {
+              $scope.message = "Error: " + response.status +
+                                  " " + response.statusText;
+            }
+
+          );
         }])
 
 
